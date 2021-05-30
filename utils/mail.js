@@ -41,4 +41,16 @@ const addHTML = (user, redirect) => {
 <p>Explore our app here: <a href=${redirect}>Click Here</a></p>`;
 };
 
-module.exports = { sendMailToUser, addSubject, addEmail, addHTML, mailOptions, transporter };
+const sendResetPassword = (user, redirect) => {
+	mailOptions.html = `<p>Hello ${user}</p>
+<p>THere is Your link to reset Your Password : <a href=${redirect}>Click Here</a></p></p> `;
+};
+module.exports = {
+	sendMailToUser,
+	addSubject,
+	addEmail,
+	addHTML,
+	mailOptions,
+	transporter,
+	sendResetPassword,
+};

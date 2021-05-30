@@ -1,6 +1,7 @@
 // npm imports
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 // local imports
 const connectDB = require('./config/db');
@@ -21,18 +22,11 @@ const PORT = process.env.PORT || 8000;
 
 // middlewares
 app.use(express.json());
+app.use(cors());
 
 app.use('/api/products', productRoutes);
 
 app.use('/api/users', userRoutes);
-
-app.use('/api/protect', Authenticate, (req, res) => {
-	res.send('This is protected route');
-});
-
-app.get('/', (req, res) => {
-	res.send('welcome to flipmart app');
-});
 
 // listner
 app.listen(PORT, () => console.log(`:::server is up and running on port ${PORT}:::`));
