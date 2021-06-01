@@ -22,6 +22,7 @@ const registerUser = async (req, res) => {
 			const hash = await generateHash(req.body.password);
 			req.body.password = hash;
 			const newUser = {
+				id: req.bosy._id,
 				name: req.body.name,
 				email: req.body.email,
 				password: req.body.password,
@@ -54,7 +55,9 @@ const loginUser = async (req, res) => {
 			if (result) {
 				let token = await generateToken(user.id);
 
-				res.status(200).json({ name: user.name, email: user.email, isAdmin: false, token });
+				res
+					.status(200)
+					.json({ id: user._id, name: user.name, email: user.email, isAdmin: false, token });
 			} else {
 				res.status(401).json({ message: 'Incorret Password' });
 			}

@@ -5,12 +5,9 @@ const cors = require('cors');
 
 // local imports
 const connectDB = require('./config/db');
-const User = require('./models/userModel');
-const Product = require('./models/productModel');
-const Order = require('./models/orderModel');
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/usersRoutes');
-const { Authenticate } = require('./utils/auth');
+const OrderRoutes = require('./routes/orderRoutes');
 
 // configs
 dotenv.config();
@@ -25,8 +22,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/products', productRoutes);
-
 app.use('/api/users', userRoutes);
+app.use('/api/orders', OrderRoutes);
 
 // listner
 app.listen(PORT, () => console.log(`:::server is up and running on port ${PORT}:::`));
